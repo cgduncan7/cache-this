@@ -52,6 +52,7 @@ $card-flip-duration: 250ms
   justify-content: center
   font-size: 3em
   perspective: 1000px
+  cursor: pointer
 
   &.flipped
     .card
