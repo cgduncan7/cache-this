@@ -19,4 +19,10 @@ export default class Board extends Vue {
 </script>
 
 <style lang="sass" scoped>
+#board
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  align-items: center
+  justify-content: space-around
 </style>
