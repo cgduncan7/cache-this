@@ -15,6 +15,6 @@ app.post('/games', (req, res) => {
     const newGame = new Game(mode)
     res.status(200).send(newGame)
   } catch (error) {
-    res.sendStatus(400)
+    res.status(400).send({ message: error.message })
   }
 })
