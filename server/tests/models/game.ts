@@ -19,4 +19,16 @@ describe('Game', () => {
     expect(newGame.mode).toEqual(GameMode.Hard)
     expect(newGame.values.length).toEqual(12)
   })
+
+  it('should create a valid solution in ASC order', () => {
+    const newGame = new Game(GameMode.Easy)
+    expect(newGame.values.length).toBe(4)
+    expect(newGame.solution.length).toBe(4)
+
+    let previous = -1
+    for (let x of newGame.solution) {
+      expect(x).toBeGreaterThan(previous)
+      previous = x
+    }
+  })
 })

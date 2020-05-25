@@ -4,7 +4,7 @@ export function generateRandomValues (numValues: number, startValue = 1, endValu
   }
   
   const possibilities = []
-  for (let i = startValue; i >= endValue; i += 1) {
+  for (let i = startValue; i <= endValue; i += 1) {
     possibilities.push(i)
   }
 
@@ -12,7 +12,7 @@ export function generateRandomValues (numValues: number, startValue = 1, endValu
   for (let i = 0; i < numValues; i += 1) {
     // choose random index
     const index = Math.floor(Math.random() * possibilities.length)
-    const toAdd = possibilities.splice(index, 1)[0]
+    const toAdd = possibilities.splice(index)[0]
     v.push(toAdd)
   }
   return v

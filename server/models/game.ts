@@ -4,11 +4,13 @@ import { generateRandomValues } from '../libs/random'
 export interface IGame {
   readonly mode: GameMode
   readonly values: number[]
+  readonly solution: number[]
 }
 
 export default class Game implements IGame {
   readonly mode: GameMode
   readonly values: number[]
+  readonly solution: number[]
 
   constructor(m: GameMode) {
     if (m === GameMode.None) throw new Error('Cannot create game with None as mode')
@@ -29,5 +31,6 @@ export default class Game implements IGame {
     }
 
     this.values = generateRandomValues(numValues)
+    this.solution = this.values.sort((a, b) => a - b)
   }
 }
