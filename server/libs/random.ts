@@ -12,7 +12,7 @@ export function generateRandomValues (numValues: number, startValue = 1, endValu
   for (let i = 0; i < numValues; i += 1) {
     // choose random index
     const index = Math.floor(Math.random() * possibilities.length)
-    const toAdd = possibilities.splice(index)[0]
+    const toAdd = possibilities.splice(index, 1)[0]
     v.push(toAdd)
   }
   return v
