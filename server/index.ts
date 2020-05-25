@@ -1,20 +1,6 @@
-import express = require('express')
-import bodyParser = require('body-parser')
+import app from './app'
+const port = process.env.PORT || 3000
 
-import Game from './model/game'
-
-const app = express()
-
-app.use(bodyParser.json())
-
-app.post('/games', (req, res) => {
-  const { body } = req
-  const { mode } = body
-
-  try {
-    const newGame = new Game(mode)
-    res.status(200).send(newGame)
-  } catch (error) {
-    res.status(400).send({ message: error.message })
-  }
+app.listen(port, () => {
+  console.log(`Server listening on ${port}.`)
 })
