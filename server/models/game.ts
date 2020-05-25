@@ -31,6 +31,7 @@ export default class Game implements IGame {
     }
 
     this.values = generateRandomValues(numValues)
-    this.solution = this.values.sort((a, b) => a - b)
+    this.solution = this.values.slice(0)
+    this.solution.sort((a, b) => a - b)
   }
 }
