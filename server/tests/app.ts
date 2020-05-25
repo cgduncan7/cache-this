@@ -34,5 +34,21 @@ describe('POST /games', () => {
 
     const game = response.body
     expect(game).toBeDefined()
+    expect(game.mode).toEqual(GameMode.Easy)
+  })
+
+  it('should return 400 with incorrect game mode', async () => {
+    const url = '/games'
+    const body = {
+      mode: GameMode.None,
+    }
+    
+    const response: request.Response = await request(server)
+      .post(url)
+      .send(body)
+      .set('Content-Type', 'application/json')
+      .set('Accept', 'application/json')
+
+    expect(response.status).toBe(400)
   })
 })

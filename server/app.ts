@@ -1,7 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 
-import Game from './model/game'
+import Game from './models/game'
 
 const app: express.Application = express()
 

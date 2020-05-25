@@ -1,4 +1,5 @@
 import GameMode from '../types/GameMode'
+import { generateRandomValues } from '../libs/random'
 
 export interface IGame {
   readonly mode: GameMode
@@ -27,19 +28,6 @@ export default class Game implements IGame {
         break
     }
 
-    this.values = this.generateValues(numValues)
-  }
-
-  private generateValues (numValues: number): number[] {
-    const v = []
-    for (let i = 0; i < numValues; i += 1) {
-      v.push(this.getRandomValue())
-    }
-    return v
-  }
-
-  // returns number 1 - 99
-  private getRandomValue (): number {
-    return Math.floor(Math.random() * 99) + 1
+    this.values = generateRandomValues(numValues)
   }
 }
