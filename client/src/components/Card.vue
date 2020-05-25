@@ -17,10 +17,25 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 @Component
 export default class Card extends Vue {
   @Prop({ required: true }) private value!: number
+  @Prop({ required: true }) private isCorrect: (v: number) => boolean
+  @Prop({ required: true }) private eventBus: Vue
   
-  private isFlipped = false // true ~~> value is visible
-  private canFlip = true
+  private isFlipped = true
+  private canFlip = false
   private flipDuration = 250
+
+  mounted () {
+    this.eventBus.$on('start', this.start)
+  }
+
+  private start () {
+    this.canFlip = true
+    this.immediateFlip()
+  }
+
+  private immediateFlip () {
+    this.isFlipped = !this.isFlipped
+  }
 
   private debouncedFlip () {
     if (this.canFlip) {
@@ -35,6 +50,9 @@ export default class Card extends Vue {
 
   flip () {
     this.debouncedFlip()
+    if (!this.isCorrect(this.value)) {
+      setTimeout(this.immediateFlip, 300)
+    }
   }
 }
 </script>

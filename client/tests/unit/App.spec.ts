@@ -9,7 +9,8 @@ describe('App.vue', () => {
 
     expect(wrapper.exists()).to.be.true
     expect(wrapper.vm.$data.gameMode).to.equal(GameMode.None)
-    expect(wrapper.vm.$data.cardValues).to.be.undefined
+    expect(wrapper.vm.$data.cardValues.length).to.equal(0)
+    expect(wrapper.vm.$data.solution.length).to.equal(0)
   })
 
   it('should render an app', () => {
