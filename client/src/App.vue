@@ -31,8 +31,8 @@ import { newGame } from './models/Game'
 })
 export default class App extends Vue {
   private gameMode: GameMode = GameMode.None
-  private cardValues: number[]
-  private solution: number[]
+  private cardValues?: number[] = []
+  private solution?: number[] = []
 
   private selectGameMode (mode: GameMode) {
     this.gameMode = mode
@@ -55,7 +55,9 @@ export default class App extends Vue {
 
   async newGame (gameMode: GameMode) {
     const game = await newGame(gameMode)
-    console.log(game)
+    const { values, solution } = game
+    this.cardValues = values
+    this.solution = solution
   }
 }
 </script>
