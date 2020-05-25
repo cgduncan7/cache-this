@@ -2,7 +2,7 @@
   <div id="board">
     <div class="controls">
       <button v-if="!started" v-on:click="start">Start</button>
-      <span v-if="started"> GO GO GO</span>
+      <h3 v-if="started">{{ formatElapsedTime() }}</h3>
     </div>
     <div class="cards">
       <Card
@@ -15,6 +15,7 @@
     </div>
     <div class="notification" v-if="solved">
       <h2>You won!</h2>
+      <button v-on:click="playAgain">Play again</button>
     </div>
   </div>
 </template>
@@ -35,10 +36,33 @@ export default class Board extends Vue {
   private solved = false
   private started = false
   private eventBus = new Vue({})
+  private elapsedTime = 0
+  private timerId: NodeJS.Timeout
 
   start () {
     this.eventBus.$emit('start')
     this.started = true
+    this.timerId = setInterval(() => {
+      this.elapsedTime++
+    }, 10)
+
+    this.$watch(() => this.solved, () => {
+      if (this.solved === true) {
+        clearInterval(this.timerId)
+      }
+    })
+  }
+
+  playAgain () {
+    console.log('again')
+    this.$parent.$emit('playAgain')
+  }
+
+  formatElapsedTime () {
+    const ms = this.elapsedTime % 100
+    const s = Math.floor(this.elapsedTime / 100)
+
+    return `${s}.${ms < 10 ? '0' + ms : ms} seconds`
   }
 
   isCorrect (cardValue: number): boolean {
@@ -65,10 +89,20 @@ export default class Board extends Vue {
   align-items: center
   justify-content: center
 
+  .controls
+    height: 80px
+
   .cards
+    width: 80%
     display: flex
     flex-direction: row
     flex-wrap: wrap
     align-items: center
-    justify-content: space-around
+    justify-content: space-between
+
+  .notification
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
 </style>

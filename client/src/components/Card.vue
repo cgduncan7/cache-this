@@ -37,21 +37,25 @@ export default class Card extends Vue {
     this.isFlipped = !this.isFlipped
   }
 
-  private debouncedFlip () {
+  private debouncedFlip (correct: boolean) {
     if (this.canFlip) {
       this.canFlip = false
       this.isFlipped = !this.isFlipped
 
       setTimeout(() => {
-        this.canFlip = true
+        this.canFlip = !correct
       }, this.flipDuration)
     }
   }
 
   flip () {
-    this.debouncedFlip()
-    if (!this.isCorrect(this.value)) {
-      setTimeout(this.immediateFlip, 300)
+    if (this.canFlip) {
+      const correct = this.isCorrect(this.value)
+      this.debouncedFlip(correct)
+      
+      if (!correct) {
+        setTimeout(this.immediateFlip, 300)
+      }
     }
   }
 }
@@ -63,8 +67,8 @@ $card-flip-duration: 250ms
 .card-container
   position: relative
   display: flex
-  width: 200px
-  height: 200px
+  width: 150px
+  height: 150px
   flex-direction: row
   align-items: center
   justify-content: center

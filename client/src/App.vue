@@ -2,7 +2,7 @@
   <div id="app">
     <div class="header">
       <a href="https://github.com/cgduncan7/cache-this"><img src="@/assets/github.png" /></a>
-      <h1>CACHE THIS</h1>
+      <a href="#" v-on:click="playAgain"><h1>CACHE THIS</h1></a>
     </div>
     <div id="mode-select" v-if="gameMode === 0">
       <h2>Choose your difficulty</h2>
@@ -33,6 +33,14 @@ export default class App extends Vue {
   private gameMode: GameMode = GameMode.None
   private cardValues?: number[] = []
   private solution?: number[] = []
+
+  mounted () {
+    this.$on('playAgain', this.playAgain)
+  }
+
+  playAgain () {
+    this.gameMode = GameMode.None
+  }
 
   private selectGameMode (mode: GameMode) {
     this.gameMode = mode
@@ -97,6 +105,9 @@ button
     background: green
     box-shadow: 0px 0px 4px black
     color: white
+
+    a
+      color: white
 
     img
       position: absolute
