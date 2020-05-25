@@ -69,12 +69,18 @@ $card-flip-duration: 250ms
   display: flex
   width: 150px
   height: 150px
+  margin-bottom: 25px
   flex-direction: row
   align-items: center
   justify-content: center
   font-size: 3em
   perspective: 1000px
   cursor: pointer
+
+  @media (max-width: 600px)
+    width: 64px
+    height: 64px
+    font-size: 1em
 
   &.flipped
     .card

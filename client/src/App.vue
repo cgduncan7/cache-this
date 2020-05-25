@@ -40,6 +40,8 @@ export default class App extends Vue {
 
   playAgain () {
     this.gameMode = GameMode.None
+    this.cardValues = []
+    this.solution = []
   }
 
   private selectGameMode (mode: GameMode) {
