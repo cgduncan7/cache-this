@@ -2,7 +2,7 @@
 
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es5",
     "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
