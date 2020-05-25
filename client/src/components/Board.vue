@@ -15,6 +15,7 @@ import Card from '@/components/Card.vue'
 })
 export default class Board extends Vue {
   @Prop({ required: true }) private cardValues: number[]
+  @Prop({ required: true }) private solution: number[]
 }
 </script>
 

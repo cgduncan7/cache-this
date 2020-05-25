@@ -10,14 +10,19 @@
       <button v-on:click="selectMedium" class="medium">Medium</button>
       <button v-on:click="selectHard" class="hard">Hard</button>
     </div>
-    <Board v-if="gameMode && cardValues" :cardValues="cardValues" />
+    <Board
+      v-if="gameMode && cardValues"
+      :cardValues="cardValues"
+      :solution="solution"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import Board from '@/components/Board.vue'
-import GameMode from '@/types/GameMode'
+import GameMode from './types/GameMode'
+import { newGame } from './models/Game'
 
 @Component({
   components: {
@@ -27,11 +32,12 @@ import GameMode from '@/types/GameMode'
 export default class App extends Vue {
   private gameMode: GameMode = GameMode.None
   private cardValues: number[]
+  private solution: number[]
 
   private selectGameMode (mode: GameMode) {
     this.gameMode = mode
     if (mode !== GameMode.None) {
-      this.requestGame(mode)
+      this.newGame(mode)
     }
   }
 
@@ -47,20 +53,9 @@ export default class App extends Vue {
     this.selectGameMode(GameMode.Hard)
   }
 
-  requestGame (gameMode: GameMode) { // TODO: request from server
-    switch (gameMode) {
-      case GameMode.Easy:
-        this.cardValues = [1,2,3,4]
-        break
-      case GameMode.Medium:
-        this.cardValues = [1,2,3,4,5,6,7,8]
-        break
-      case GameMode.Hard:
-        this.cardValues = [1,2,3,4,5,6,7,8,9,10,11,12]
-        break
-      default:
-        this.selectGameMode(GameMode.None)
-    }
+  async newGame (gameMode: GameMode) {
+    const game = await newGame(gameMode)
+    console.log(game)
   }
 }
 </script>
