@@ -73,9 +73,14 @@ export default class App extends Vue {
 </script>
 
 <style lang="sass">
-$phone-width: 600px
-$tablet-width: 768px
-$desktop-width: 1200px
+$primary: #3772ff
+$secondary: #44BBA4
+$dark: #32292F
+$light: #D1E3DD
+$alert: #F5CB5C
+
+html
+  background-color: white
 
 *
   box-sizing: border-box
@@ -90,26 +95,33 @@ button
   outline: none
   margin: 10px
   padding: 10px
-  border: 1px solid black
+  border: none
+  border-radius: 16px
+  box-shadow: 0px 0px 4px $dark
   color: inherit
   font: inherit
-  background-color: white
+  background-color: $alert
   cursor: pointer
+
+  &:hover
+    box-shadow: 0px 0px 8px $dark
 
 #app
   font-family: Avenir, Helvetica, Arial, sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
+  color: $dark
+  background-color: inherit
 
   .header
     position: relative
     text-align: center
-    background: green
+    background: $primary
     box-shadow: 0px 0px 4px black
     color: white
 
     a
-      color: white
+      color: inherit
 
     img
       position: absolute
@@ -134,14 +146,11 @@ button
       color: white
 
       &.easy
-        background-color: green
+        background-color: #00916E
 
       &.medium
-        background-color: yellow
+        background-color: #FFC145
 
       &.hard
-        background-color: red
-
-      &:hover
-        border: 2px solid black
+        background-color: #FA003F
 </style>

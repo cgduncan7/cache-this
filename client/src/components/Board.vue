@@ -90,15 +90,19 @@ export default class Board extends Vue {
   justify-content: center
 
   .controls
-    height: 80px
+    height: 64px
 
   .cards
     width: 80%
+    position: relative
     display: flex
     flex-direction: row
     flex-wrap: wrap
     align-items: center
     justify-content: space-between
+
+    *
+      width: 25%
 
   .notification
     display: flex

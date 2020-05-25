@@ -62,13 +62,19 @@ export default class Card extends Vue {
 </script>
 
 <style lang="sass" scoped>
+$primary: #3772ff
+$secondary: #44BBA4
+$dark: #32292F
+$light: #D1E3DD
+$alert: #F5CB5C
+
 $card-flip-duration: 250ms
 
 .card-container
   position: relative
   display: flex
-  width: 150px
-  height: 150px
+  height: 128px
+  padding: 10px
   margin-bottom: 25px
   flex-direction: row
   align-items: center
@@ -78,8 +84,7 @@ $card-flip-duration: 250ms
   cursor: pointer
 
   @media (max-width: 600px)
-    width: 64px
-    height: 64px
+    height: 100px
     font-size: 1em
 
   &.flipped
@@ -90,9 +95,6 @@ $card-flip-duration: 250ms
     position: relative
     width: 100%
     height: 100%
-    border: 5px solid black
-    border-radius: 1em
-    box-shadow: 4px 4px 16px black
     transform-style: preserve-3d
     transition: transform $card-flip-duration
 
@@ -100,11 +102,16 @@ $card-flip-duration: 250ms
       position: absolute
       width: 100%
       height: 100%
+      border: 5px solid $dark
+      border-radius: 1em
+      box-shadow: 2px 2px 4px $dark
       display: flex
       align-items: center
       justify-content: center
       -webkit-backface-visibility: hidden
       backface-visibility: hidden
+      color: $dark
+      background-color: $light
 
     .card-back
       transform: rotateY(180deg)

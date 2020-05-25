@@ -21,8 +21,3 @@ yarn build
 ```
 yarn test:unit
 ```
-
-### Lints and fixes files
-```
-yarn lint
-```
