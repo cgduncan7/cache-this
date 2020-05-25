@@ -12,7 +12,7 @@ export interface Game {
   readonly solution: number[];
 }
 
-const url = process.env.SERVER_URL || 'http://localhost:3000'
+const url = process.env.VUE_APP_SERVER_URL || 'http://localhost:3000'
 
 export async function newGame (mode: GameMode) {
   const body: GameRequest = {
