@@ -37,18 +37,17 @@ export default class Board extends Vue {
   private started = false
   private eventBus = new Vue({})
   private elapsedTime = 0
-  private timerId: NodeJS.Timeout
 
   start () {
     this.eventBus.$emit('start')
     this.started = true
-    this.timerId = setInterval(() => {
+    const timerId = setInterval(() => {
       this.elapsedTime++
     }, 10)
 
     this.$watch(() => this.solved, () => {
       if (this.solved === true) {
-        clearInterval(this.timerId)
+        clearInterval(timerId)
       }
     })
   }
