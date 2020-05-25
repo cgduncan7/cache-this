@@ -13,7 +13,6 @@ app.options('/games', cors(), (req, res) => {
 })
 
 app.post('/games', cors(), (req, res, done) => {
-  console.dir(req, { depth: 10 })
   const { body } = req
   const { mode } = body
 
