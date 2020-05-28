@@ -1,19 +1,23 @@
+/**
+ * Creates a number[] of length numValues in [1,99] domain
+ * @param numValues number of values to create
+ * @param startValue starting value [inclusive]
+ * @param endValue ending value [inclusive]
+ */
 export function generateRandomValues (numValues: number, startValue = 1, endValue = 99): number[] {
-  if ((endValue - startValue) + 1 < numValues) {
+  if ((endValue - startValue) + 2 < numValues) {
     throw new Error('Not enough values to choose from')
   }
-  
-  const possibilities = []
-  for (let i = startValue; i <= endValue; i += 1) {
-    possibilities.push(i)
+
+  const set = new Set<number>()
+  while (set.size < numValues) {
+    // choose random index
+    const r = Math.random()
+    const scaledR = r * (endValue - startValue + 1) + startValue
+    const flooredR = Math.floor(scaledR)
+    set.add(flooredR)
   }
 
-  const v = []
-  for (let i = 0; i < numValues; i += 1) {
-    // choose random index
-    const index = Math.floor(Math.random() * possibilities.length)
-    const toAdd = possibilities.splice(index, 1)[0]
-    v.push(toAdd)
-  }
-  return v
+  const toReturn: number[] = Array.from(set)
+  return toReturn
 }
